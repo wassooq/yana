@@ -85,7 +85,7 @@ html, body {
 }
 
 .parallax-one {
-  background-image: url('https://avatars.mds.yandex.net/i?id=c32eb947d098dc49434d63637022a003382abce176f062c5-12760159-images-thumbs&n=13');
+  background-image: url('https://rawcdn.githack.com/wassooq/yana/59e1dde530558b271ab44aa48f11628e996012ac/1.JPG');
   background-position: top center;
 }
 
