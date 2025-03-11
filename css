@@ -2,10 +2,10 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic);
 
 html, body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   height: 100%;
   margin: 0;
-  background-color: #f0f0f0; /* Цвет фона страницы */
+  background-color: #f4f4f4; /* Легкий серый фон */
 }
 
 .box {
@@ -48,14 +48,14 @@ html, body {
 
 #landing h2 {
   font-family: 'Oswald', sans-serif;
-  font-size: 70px;
-  letter-spacing: 10px;
+  font-size: 60px;
+  letter-spacing: 5px;
   text-align: center;
   color: white;
   font-weight: 400;
   text-transform: uppercase;
   z-index: 10;
-  opacity: .9;
+  opacity: 0.9;
 }
 
 #landing h3 {
@@ -105,10 +105,13 @@ html, body {
 
 #landing .block {
   background: white;
-  padding: 6px;
+  padding: 20px;
   width: 820px;
   margin: 0 auto;
   text-align: justify;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень для блока текста */
+  border-radius: 8px;
+  margin-top: 20px;
 }
 
 #landing .block-gray {
@@ -126,48 +129,31 @@ html, body {
   opacity: 0.70;
 }
 
-#landing .parallax-one {
+#landing .parallax-one, .parallax-two, .parallax-three {
   padding-top: 200px;
   padding-bottom: 200px;
   overflow: hidden;
   position: relative;
   width: 100%;
-  background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/1.JPG");
   background-attachment: fixed;
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
   background-repeat: no-repeat;
+}
+
+#landing .parallax-one {
+  background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/1.JPG");
   background-position: top center;
 }
 
 #landing .parallax-two {
-  padding-top: 200px;
-  padding-bottom: 200px;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/1.JPG");
-  background-attachment: fixed;
-  background-size: cover;
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  background-repeat: no-repeat;
+  background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/2.JPG");
   background-position: center center;
 }
 
 #landing .parallax-three {
-  padding-top: 200px;
-  padding-bottom: 200px;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/1.JPG");
-  background-attachment: fixed;
-  background-size: cover;
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  background-repeat: no-repeat;
+  background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/3.JPG");
   background-position: center center;
 }
 
@@ -175,6 +161,7 @@ html, body {
   background: linear-gradient(60deg, #008000, #ffd700, #dc143c);
   width: 100%;
   margin: 0 auto;
+  height: 10px;
 }
 
 @media screen and (max-width: 959px) and (min-width: 768px) {
