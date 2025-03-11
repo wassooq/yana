@@ -78,20 +78,7 @@ html, body {
  background-repeat: no-repeat;
  background-position: top center;
 }
-.parallax-one {
-    background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/1.JPG");
-    background-position: top center;
-}
 
-.parallax-two {
-    background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/2.JPG");
-    background-position: center center;
-}
-
-.parallax-three {
-    background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/3.JPG");
-    background-position: center center;
-}
 
 .block {
     background: white;
