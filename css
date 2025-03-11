@@ -1,194 +1,116 @@
-@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic);
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900');
 
 html, body {
-  font-family: 'Source Sans Pro', sans-serif;
-  height: 100%;
-  margin: 0;
-  background-color: #f4f4f4; /* Легкий серый фон */
+    font-family: 'Source Sans Pro', sans-serif;
+    height: 100%;
+    margin: 0;
+    background-color: #f5f5f5;
 }
 
 .box {
-  width: 80%;
-  position: absolute;
-  margin: auto;
-  overflow: auto;
+    width: 80%;
+    margin: auto;
+    overflow: auto;
+    text-align: center;
 }
 
-#main {
-  width: 100%;
-  padding: 0;
+#landing {
+    width: 100%;
+    padding: 0;
 }
-
-.content-asset p {
-  margin: 0 auto;
-}
-
-.breadcrumb {
-  display: none;
-}
-
-.margin-top-10 {
-  padding-top: 10px;
-}
-
-.margin-bot-10 {
-  padding-bottom: 10px;
-}
-
-#landing h1 {
-  font-family: 'Oswald', sans-serif;
-  font-size: 24px;
-  font-weight: 400;
-  text-transform: uppercase;
-  color: black;
-  padding: 0;
-  margin: 0;
-}
-
-#landing h2 {
-  font-family: 'Oswald', sans-serif;
-  font-size: 60px;
-  letter-spacing: 5px;
-  text-align: center;
-  color: white;
-  font-weight: 400;
-  text-transform: uppercase;
-  z-index: 10;
-  opacity: 0.9;
-}
-
-#landing h3 {
-  font-family: 'Oswald', sans-serif;
-  font-size: 14px;
-  line-height: 0;
-  font-weight: 400;
-  letter-spacing: 8px;
-  text-transform: uppercase;
-  color: black;
-}
-
-#landing p {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-}
-
-.first-character {
-  font-weight: 400;
-  float: left;
-  font-size: 84px;
-  line-height: 64px;
-  padding-top: 4px;
-  padding-right: 8px;
-  padding-left: 3px;
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
-/* Пример цветов для стартовых букв */
-.fl { color: #008000; } /* Зеленый */
-.fs { color: #ffd700; } /* Желтый */
-.ft { color: #dc143c; } /* Красный */
 
 #landing .title {
-  padding: 60px;
-  margin: 0 auto;
-  text-align: center;
-  position: relative;
+    background: white;
+    padding: 60px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 #landing .title h1 {
-  font-size: 35px;
-  letter-spacing: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 35px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
 }
 
-#landing .block {
-  background: white;
-  padding: 20px;
-  width: 820px;
-  margin: 0 auto;
-  text-align: justify;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень для блока текста */
-  border-radius: 8px;
-  margin-top: 20px;
+.parallax-one, .parallax-two, .parallax-three {
+    padding-top: 200px;
+    padding-bottom: 200px;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    font-size: 70px;
+    letter-spacing: 10px;
+    font-weight: 400;
 }
 
-#landing .block-gray {
-  background: #f2f2f2;
-  padding: 6px;
+.parallax-one {
+    background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/1.JPG");
+    background-position: top center;
 }
 
-#landing .section-overlay-mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  opacity: 0.70;
+.parallax-two {
+    background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/2.JPG");
+    background-position: center center;
 }
 
-/* Картинки для разделов */
-#landing .parallax-one, .parallax-two, .parallax-three {
-  padding-top: 200px;
-  padding-bottom: 200px;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  background-attachment: fixed;
-  background-size: cover;
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  background-repeat: no-repeat;
+.parallax-three {
+    background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/3.JPG");
+    background-position: center center;
 }
 
-#landing .parallax-one {
-  background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/1.JPG");
-  background-position: center center;
+.block {
+    background: white;
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+    text-align: justify;
+    line-height: 1.6;
 }
 
-#landing .parallax-two {
-  background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/2.JPG");
-  background-position: center center;
+.block-gray {
+    background: #f2f2f2;
 }
 
-#landing .parallax-three {
-  background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/3.JPG");
-  background-position: center center;
+.first-character {
+    font-size: 84px;
+    line-height: 64px;
+    float: left;
+    padding-right: 8px;
+    font-weight: bold;
+    color: #008000;
 }
 
-#landing .line-break {
-  background: linear-gradient(60deg, #008000, #ffd700, #dc143c);
-  width: 100%;
-  margin: 0 auto;
-  height: 10px;
-}
-
-@media screen and (max-width: 959px) and (min-width: 768px) {
-  #flat .block {
-    padding: 40px;
-    width: 620px;
-  }
+.line-break {
+    background: linear-gradient(60deg, #008000, #ffd700, #dc143c);
+    width: 100%;
+    height: 5px;
+    margin: 20px 0;
 }
 
 @media screen and (max-width: 767px) {
-  #flat .block {
-    padding: 30px;
-    width: 420px;
-  }
-  #flat h2 {
-    font-size: 30px;
-  }
-  #flat .parallax-one, #flat .parallax-two, #flat .parallax-three {
-    padding-top: 100px;
-    padding-bottom: 100px;
-  }
+    .parallax-one, .parallax-two, .parallax-three {
+        padding-top: 100px;
+        padding-bottom: 100px;
+        font-size: 40px;
+    }
+    .block {
+        width: 90%;
+        padding: 15px;
+    }
 }
 
 @media screen and (max-width: 479px) {
-  #flat .block {
-    padding: 30px 15px;
-    width: 290px;
-  }
+    .block {
+        width: 95%;
+        padding: 10px;
+    }
+    .first-character {
+        font-size: 64px;
+        line-height: 48px;
+    }
 }
