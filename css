@@ -5,7 +5,7 @@ html, body {
   font-family: 'Open Sans', sans-serif;
   height: 100%;
   margin: 0;
-  background-color: #000000; /* Вы можете заменить на свой фон */
+  background-color: #f0f0f0; /* Цвет фона страницы */
 }
 
 .box {
@@ -87,9 +87,9 @@ html, body {
 }
 
 /* Пример цветов для стартовых букв */
-.fl { color: #457457; }
-.fs { color: #ffd700; }
-.ft { color: #dc143c; }
+.fl { color: #008000; } /* Зеленый */
+.fs { color: #ffd700; } /* Желтый */
+.ft { color: #dc143c; } /* Красный */
 
 #landing .title {
   background: white;
@@ -141,45 +141,34 @@ html, body {
   background-position: top center;
 }
 
-#landing .line-break {
-  background: linear-gradient(60deg, #008000, #ffd700, #dc143c);
-  width: 100%;
-  margin: 0 auto;
-}
-
 #landing .parallax-two {
   padding-top: 200px;
   padding-bottom: 200px;
   overflow: hidden;
   position: relative;
   width: 100%;
-  background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/2.JPG");
+  background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/1.JPG");
   background-attachment: fixed;
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: center center;
 }
 
-#landing .line-break {
-  background: linear-gradient(60deg, #008000, #ffd700, #dc143c);
-  width: 100%;
-  margin: 0 auto;
-}
 #landing .parallax-three {
   padding-top: 200px;
   padding-bottom: 200px;
   overflow: hidden;
   position: relative;
   width: 100%;
-  background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/3.JPG");
+  background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/1.JPG");
   background-attachment: fixed;
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: center center;
 }
 
 #landing .line-break {
