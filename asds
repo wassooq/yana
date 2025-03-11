@@ -90,12 +90,12 @@ html, body {
 }
 
 .parallax-two {
-  background-image: url('https://example.com/image2.jpg');
+  background-image: url('https://rawcdn.githack.com/wassooq/yana/59e1dde530558b271ab44aa48f11628e996012ac/2.JPG');
   background-position: center center;
 }
 
 .parallax-three {
-  background-image: url('https://example.com/image3.jpg');
+  background-image: url('https://rawcdn.githack.com/wassooq/yana/59e1dde530558b271ab44aa48f11628e996012ac/3.JPG');
   background-position: center center;
 }
 
