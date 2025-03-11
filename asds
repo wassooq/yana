@@ -85,7 +85,7 @@ html, body {
 }
 
 .parallax-one {
-  background-image: url('https://example.com/image1.jpg');
+  background-image: url('https://avatars.mds.yandex.net/i?id=c32eb947d098dc49434d63637022a003382abce176f062c5-12760159-images-thumbs&n=13');
   background-position: top center;
 }
 
