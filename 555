@@ -1,0 +1,122 @@
+
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900');
+
+html, body {
+  font-family: 'Open Sans', sans-serif;
+  height: 100%;
+  margin: 0;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+.box {
+  width: 80%;
+  position: absolute;
+  margin: auto;
+  overflow: auto;
+}
+
+#landing {
+  width: 100%;
+  padding: 0;
+}
+
+#landing h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #444;
+  text-align: center;
+}
+
+#landing h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 72px;
+  letter-spacing: 8px;
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#landing .title {
+  background: #f0e6f6;
+  padding: 60px;
+  text-align: center;
+  color: #5a5a5a;
+}
+
+#landing .block {
+  background: white;
+  padding: 30px;
+  width: 820px;
+  margin: 40px auto;
+  text-align: justify;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.first-character {
+  font-weight: 700;
+  float: left;
+  font-size: 84px;
+  line-height: 84px;
+  padding-right: 15px;
+  font-family: 'Source Sans Pro', sans-serif;
+  position: relative;
+  top: -10px;
+}
+
+.fc1 { color: #7dbb91; position: relative; }
+.fc2 { color: #f7c965; position: relative; }
+.fc3 { color: #e38181; position: relative; }
+
+#landing .line-break {
+ background: linear-gradient(60deg, #008000, #ffd700, #dc143c);
+ width: 100%;
+ margin: 0 auto;
+}
+
+
+
+.parallax-one, .parallax-two, .parallax-three {
+  padding-top: 200px;
+  padding-bottom: 200px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.parallax-one {
+  background-image: url('https://rawcdn.githack.com/wassooq/yana/baab9966f0fd37c897b962f79ebe992b264f7111/1.JPG');
+  background-position: top center;
+}
+
+.parallax-two {
+  background-image: url('https://rawcdn.githack.com/wassooq/yana/baab9966f0fd37c897b962f79ebe992b264f7111/2.JPG');
+  background-position: center center;
+}
+
+.parallax-three {
+  background-image: url('https://rawcdn.githack.com/wassooq/yana/baab9966f0fd37c897b962f79ebe992b264f7111/3.JPG');
+  background-position: center center;
+}
+
+@media screen and (max-width: 767px) {
+  #landing h2 { font-size: 36px; }
+  .block { width: 420px; padding: 30px; }
+  .parallax-one, .parallax-two, .parallax-three {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .block { width: 290px; padding: 30px 15px; }
+}
