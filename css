@@ -81,12 +81,12 @@ html, body {
 
 .parallax-two {
     background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/2.JPG");
-    background-position: top center;
+    background-position: center center;
 }
 
 .parallax-three {
     background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/3.JPG");
-    background-position: top center;
+    background-position: center center;
 }
 
 .block {
