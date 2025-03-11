@@ -92,10 +92,10 @@ html, body {
 .ft { color: #dc143c; } /* Красный */
 
 #landing .title {
-  background: white;
   padding: 60px;
   margin: 0 auto;
   text-align: center;
+  position: relative;
 }
 
 #landing .title h1 {
@@ -129,6 +129,7 @@ html, body {
   opacity: 0.70;
 }
 
+/* Картинки для разделов */
 #landing .parallax-one, .parallax-two, .parallax-three {
   padding-top: 200px;
   padding-bottom: 200px;
@@ -144,7 +145,7 @@ html, body {
 
 #landing .parallax-one {
   background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/1.JPG");
-  background-position: top center;
+  background-position: center center;
 }
 
 #landing .parallax-two {
