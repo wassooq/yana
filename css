@@ -34,7 +34,21 @@ html, body {
     text-transform: uppercase;
 }
 
-.parallax-one, .parallax-two, .parallax-three {
+.parallax-one{
+    padding-top: 200px;
+    padding-bottom: 200px;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    font-size: 70px;
+    letter-spacing: 10px;
+    font-weight: 400;
+    
+}
+.parallax-two{
     padding-top: 200px;
     padding-bottom: 200px;
     background-attachment: fixed;
@@ -47,14 +61,26 @@ html, body {
     letter-spacing: 10px;
     font-weight: 400;
 }
-
+.parallax-three {
+    padding-top: 200px;
+    padding-bottom: 200px;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    font-size: 70px;
+    letter-spacing: 10px;
+    font-weight: 400;
+}
 .parallax-one {
     background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/1.JPG");
     background-position: top center;
 }
 
 .parallax-two {
-    background-image: url("https://rawcdn.githack.com/wassooq/yana/15597c0bce36a84f2d15b48396752b40e0781193/2.JPG");
+    background-image: url("https://raw.githubusercontent.com/wassooq/yana/refs/heads/main/2.JPG");
     background-position: center center;
 }
 
