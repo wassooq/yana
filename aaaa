@@ -123,7 +123,7 @@ html, body {
  overflow: hidden;
  position: relative;
  width: 100%;
- background-image: url("https://github.com/wassooq/yana/blob/main/1.JPG");
+ background-image: url("https://rawcdn.githack.com/wassooq/yana/533b749595572b02a9587a6ecd891d02c23754b3/1.JPG");
  background-attachment: fixed;
  background-size: cover;
  -moz-background-size: cover;
