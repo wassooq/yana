@@ -5,7 +5,7 @@ html, body {
   font-family: 'Open Sans', sans-serif;
   height: 100%;
   margin: 0;
-  background-color: #f0f0f0; /* Вы можете заменить на свой фон */
+  background-color: #000000; /* Вы можете заменить на свой фон */
 }
 
 .box {
