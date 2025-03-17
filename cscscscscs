@@ -6,7 +6,7 @@ html, body {
   font-family: 'Open Sans', sans-serif;
   height: 100%;
   margin: 0;
-  background: url("https://s7.stc.all.kpcdn.net/woman/wp-content/uploads/2022/04/30-populyarnyh-rossijskih-brendov-odezhdy-2-960x540.jpg") repeat-y center;
+  background: url("https://raw.githack.com/wassooq/yana/main/ffff97b7893a7cbec0cb8c7298971199.jpg") repeat-y center;
   background-size: cover;
   background-attachment: fixed;
 }
