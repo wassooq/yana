@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Open Sans', sans-serif;
+  height: 100%;
+  margin: 0;
+  background: url("https://raw.githack.com/wassooq/yana/main/ffff97b7893a7cbec0cb8c7298971199.jpg") repeat-y center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.landing {
+  min-height: 90%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.box {
+  width: 90%;
+  max-width: 800px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  background-color: #4a4e69;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+
+.links li {
+  margin: 10px 5px;
+  flex-shrink: 0;
+}
+
+.links a {
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  display: block;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  background-color: #6c63ff;
+  white-space: nowrap;
+}
+
+.links a:hover {
+  background-color: #a29bfe;
+  transform: translateY(-2px);
+}
+
+.info h1 {
+  color: #2d3436;
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.info p {
+  color: #2c3e50;
+  font-size: 17px;
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+#spoiler_button {
+  margin-top: 25px;
+  padding: 12px 28px;
+  background: linear-gradient(to right, #6c63ff, #5e60ce);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+#spoiler_button:hover {
+  background: linear-gradient(to right, #a29bfe, #6c63ff);
+  transform: scale(1.05);
+}
+
+.container {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: rgba(255, 255, 255, 0.85);
+  margin-top: 30px;
+  border-radius: 15px;
+  display: none; /* Скрыто по умолчанию */
+}
+
+.container.active {
+  display: block; /* Показывается при нажатии */
+}
+
+.container h2 {
+  font-size: 26px;
+  margin-bottom: 25px;
+  color: #2d3436;
+}
+
+#countdown ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  font-size: 20px;
+  color: #333;
+}
+
+#countdown li {
+  background-color: #dfe6e9;
+  padding: 15px 10px;
+  border-radius: 12px;
+  min-width: 80px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#additional {
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 18px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #2c3e50;
+  margin-top: 20px;
+  border-radius: 15px;
+}
