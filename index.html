@@ -1,85 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Купить звезду в Telegram 🌟</title>
+    <title>🌟 Купить звезды в Telegram</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f3f4f6;
+            margin: 0;
             padding: 20px;
-            background: #f5f5f5;
             color: #333;
         }
-        .star-card {
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
             background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        h1 {
+            color: #0088cc;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
             border-radius: 12px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .result {
+            background: #f8f9fa;
             padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 18px;
         }
         button {
             background: #0088cc;
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 8px;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
             cursor: pointer;
             margin-top: 10px;
+        }
+        button:disabled {
+            background: #ccc;
+        }
+        .price {
+            font-weight: bold;
+            color: #0088cc;
         }
     </style>
 </head>
 <body>
-    <h1>🌟 Магазин звёзд Telegram</h1>
-    <p>Выберите звезду и оплатите TON/USDT</p>
-
-    <div class="star-card">
-        <h3>⭐ Маленькая звезда</h3>
-        <p>Цена: <strong>5 TON</strong> или <strong>5 USDT</strong></p>
-        <button onclick="buyStar('small', 'ton')">Купить за TON</button>
-        <button onclick="buyStar('small', 'usdt')">Купить за USDT</button>
-    </div>
-
-    <div class="star-card">
-        <h3>⭐⭐ Средняя звезда</h3>
-        <p>Цена: <strong>15 TON</strong> или <strong>15 USDT</strong></p>
-        <button onclick="buyStar('medium', 'ton')">Купить за TON</button>
-        <button onclick="buyStar('medium', 'usdt')">Купить за USDT</button>
-    </div>
-
-    <div class="star-card">
-        <h3>⭐⭐⭐ Большая звезда</h3>
-        <p>Цена: <strong>30 TON</strong> или <strong>30 USDT</strong></p>
-        <button onclick="buyStar('large', 'ton')">Купить за TON</button>
-        <button onclick="buyStar('large', 'usdt')">Купить за USDT</button>
+    <div class="container">
+        <h1>Купить звезды 🌟</h1>
+        
+        <div class="input-group">
+            <label for="stars-count">Количество звезд:</label>
+            <input type="number" id="stars-count" min="100" value="100" step="100">
+        </div>
+        
+        <div class="result">
+            Стоимость: <span class="price" id="total-price">0.35</span> TON
+        </div>
+        
+        <button id="pay-button">Перейти к оплате</button>
     </div>
 
     <script>
-        // Инициализация Telegram Web App
         const tg = window.Telegram.WebApp;
         tg.expand(); // Раскрываем на весь экран
-
-        // Функция покупки звезды (имитация)
-        function buyStar(starType, currency) {
-            const prices = {
-                small: { ton: 5, usdt: 5 },
-                medium: { ton: 15, usdt: 15 },
-                large: { ton: 30, usdt: 30 }
-            };
-
-            const starName = {
-                small: "⭐ Маленькая звезда",
-                medium: "⭐⭐ Средняя звезда",
-                large: "⭐⭐⭐ Большая звезда"
-            };
-
-            const price = prices[starType][currency];
-            alert(`Вы покупаете ${starName[starType]} за ${price} ${currency.toUpperCase()}!`);
-
-            // В реальном приложении здесь будет вызов Telegram Payments
-            // tg.sendData(JSON.stringify({ star: starType, currency, price }));
+        
+        // Расчет стоимости
+        const starsInput = document.getElementById('stars-count');
+        const totalPrice = document.getElementById('total-price');
+        
+        starsInput.addEventListener('input', updatePrice);
+        
+        function updatePrice() {
+            const count = parseInt(starsInput.value) || 0;
+            const price = (count * 0.35 / 100).toFixed(2);
+            totalPrice.textContent = price;
         }
+        
+        // Переход на страницу оплаты
+        document.getElementById('pay-button').addEventListener('click', () => {
+            const count = starsInput.value;
+            const price = totalPrice.textContent;
+            
+            tg.showPopup({
+                title: 'Оплата TON',
+                message: `Переведите ${price} TON на кошелек:\n\n` +
+                         `<code>EQAB...dFgH</code>\n\n` +
+                         `После оплаты нажмите "Я оплатил"`,
+                buttons: [{
+                    type: 'default',
+                    text: 'Я оплатил',
+                    id: 'paid'
+                }, {
+                    type: 'cancel',
+                    id: 'cancel'
+                }]
+            }, (buttonId) => {
+                if (buttonId === 'paid') {
+                    tg.showAlert('Спасибо! Проверяем оплату...');
+                }
+            });
+        });
     </script>
 </body>
 </html>
