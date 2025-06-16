@@ -3,131 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌟 Купить звезды в Telegram</title>
+    <title>🌟 Cosmic Stars | Telegram</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
     <style>
+        :root {
+            --primary: #0088cc;
+            --bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --text: #1a1a1a;
+            --text-light: #6c757d;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
             margin: 0;
-            padding: 20px;
-            color: #333;
+            padding: 0;
+            color: var(--text);
         }
+        
         .container {
-            max-width: 500px;
-            margin: 0 auto;
-            background: white;
+            max-width: 100%;
+            padding: 16px;
+        }
+        
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+        
+        .user-info {
+            flex: 1;
+        }
+        
+        .username {
+            font-weight: 600;
+            font-size: 18px;
+            margin: 0;
+        }
+        
+        .user-id {
+            color: var(--text-light);
+            font-size: 14px;
+            margin: 4px 0 0;
+        }
+        
+        .balance-card {
+            background: var(--card-bg);
             border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
-        h1 {
-            color: #0088cc;
-            text-align: center;
+        
+        .balance-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .balance-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin: 0;
+        }
+        
+        .balance-amount {
             font-size: 24px;
-            margin-bottom: 20px;
+            font-weight: 600;
+            margin: 8px 0;
         }
+        
+        .currency {
+            color: var(--primary);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .stars-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .calc-container {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 24px;
+        }
+        
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
+        
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
         }
+        
         input {
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
             border-radius: 12px;
             font-size: 16px;
-            box-sizing: border-box;
         }
+        
         .result {
             background: #f8f9fa;
-            padding: 15px;
+            padding: 16px;
             border-radius: 12px;
-            margin: 20px 0;
             text-align: center;
             font-size: 18px;
+            margin: 16px 0;
         }
-        button {
-            background: #0088cc;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 14px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        button:disabled {
-            background: #ccc;
-        }
+        
         .price {
-            font-weight: bold;
-            color: #0088cc;
+            font-weight: 700;
+            color: var(--primary);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Купить звезды 🌟</h1>
-        
-        <div class="input-group">
-            <label for="stars-count">Количество звезд:</label>
-            <input type="number" id="stars-count" min="100" value="100" step="100">
+        <!-- Профиль пользователя -->
+        <div class="profile">
+            <img id="user-avatar" src="https://via.placeholder.com/56" class="avatar" alt="Avatar">
+            <div class="user-info">
+                <h2 id="username" class="username">Имя пользователя</h2>
+                <p id="user-id" class="user-id">ID: 123456</p>
+            </div>
         </div>
         
-        <div class="result">
-            Стоимость: <span class="price" id="total-price">0.35</span> TON
+        <!-- Баланс TON -->
+        <div class="balance-card">
+            <div class="balance-header">
+                <h3 class="balance-title">Toncoin</h3>
+                <span class="currency">TON</span>
+            </div>
+            <p class="balance-amount" id="ton-balance">0.00</p>
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="ton-deposit">Депозит</button>
+                <button class="btn btn-outline">Вывод</button>
+            </div>
         </div>
         
-        <button id="pay-button">Перейти к оплате</button>
+        <!-- Баланс USDT -->
+        <div class="balance-card">
+            <div class="balance-header">
+                <h3 class="balance-title">Tether</h3>
+                <span class="currency">USDT</span>
+            </div>
+            <p class="balance-amount" id="usdt-balance">0.00</p>
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="usdt-deposit">Депозит</button>
+                <button class="btn btn-outline">Вывод</button>
+            </div>
+        </div>
+        
+        <!-- Баланс Stars -->
+        <div class="balance-card">
+            <div class="balance-header">
+                <h3 class="balance-title">Cosmic Stars</h3>
+                <span class="currency">🌟</span>
+            </div>
+            <p class="balance-amount" id="stars-balance">0</p>
+            <div class="stars-actions">
+                <button class="btn btn-primary" id="buy-ton">Купить за TON</button>
+                <button class="btn btn-primary" id="buy-usdt">Купить за USDT</button>
+            </div>
+        </div>
+        
+        <!-- Калькулятор (скрыт по умолчанию) -->
+        <div class="calc-container" id="calculator" style="display: none;">
+            <h3>Покупка Stars</h3>
+            <div class="input-group">
+                <label for="stars-count">Количество Stars:</label>
+                <input type="number" id="stars-count" min="100" value="100" step="100">
+            </div>
+            <div class="result">
+                Стоимость: <span class="price" id="total-price">0.35</span> <span id="payment-currency">TON</span>
+            </div>
+            <button class="btn btn-primary" id="pay-button">Оплатить</button>
+        </div>
     </div>
 
     <script>
+        // Инициализация Telegram Web App
         const tg = window.Telegram.WebApp;
-        tg.expand(); // Раскрываем на весь экран
+        tg.expand();
         
-        // Расчет стоимости
-        const starsInput = document.getElementById('stars-count');
-        const totalPrice = document.getElementById('total-price');
+        // Данные пользователя
+        document.getElementById('username').textContent = tg.initDataUnsafe.user?.first_name || 'Аноним';
+        document.getElementById('user-id').textContent = `ID: ${tg.initDataUnsafe.user?.id || '0000'}`;
         
-        starsInput.addEventListener('input', updatePrice);
-        
-        function updatePrice() {
-            const count = parseInt(starsInput.value) || 0;
-            const price = (count * 0.35 / 100).toFixed(2);
-            totalPrice.textContent = price;
+        // Если есть фото профиля
+        if (tg.initDataUnsafe.user?.photo_url) {
+            document.getElementById('user-avatar').src = tg.initDataUnsafe.user.photo_url;
         }
         
-        // Переход на страницу оплаты
+        // Балансы (для примера)
+        const balances = {
+            ton: 12.5,
+            usdt: 50.0,
+            stars: 0
+        };
+        
+        document.getElementById('ton-balance').textContent = balances.ton.toFixed(2);
+        document.getElementById('usdt-balance').textContent = balances.usdt.toFixed(2);
+        document.getElementById('stars-balance').textContent = balances.stars;
+        
+        // Калькулятор стоимости
+        let currentCurrency = 'TON';
+        
+        function updatePrice() {
+            const count = parseInt(document.getElementById('stars-count').value) || 0;
+            const pricePer100 = currentCurrency === 'TON' ? 0.35 : 0.35; // Курс 1 TON ≈ 1 USDT для примера
+            const price = (count * pricePer100 / 100).toFixed(2);
+            document.getElementById('total-price').textContent = price;
+        }
+        
+        // Покупка за TON
+        document.getElementById('buy-ton').addEventListener('click', () => {
+            currentCurrency = 'TON';
+            document.getElementById('payment-currency').textContent = 'TON';
+            document.getElementById('calculator').style.display = 'block';
+            updatePrice();
+        });
+        
+        // Покупка за USDT
+        document.getElementById('buy-usdt').addEventListener('click', () => {
+            currentCurrency = 'USDT';
+            document.getElementById('payment-currency').textContent = 'USDT';
+            document.getElementById('calculator').style.display = 'block';
+            updatePrice();
+        });
+        
+        // Депозит TON
+        document.getElementById('ton-deposit').addEventListener('click', () => {
+            tg.showPopup({
+                title: 'Депозит TON',
+                message: 'Переведите TON на этот адрес:\n\n<code>EQAB...1234</code>',
+                buttons: [{ type: 'default', text: 'OK' }]
+            });
+        });
+        
+        // Депозит USDT
+        document.getElementById('usdt-deposit').addEventListener('click', () => {
+            tg.showPopup({
+                title: 'Депозит USDT',
+                message: 'Переведите USDT на этот адрес:\n\n<code>0xAbc...123</code>',
+                buttons: [{ type: 'default', text: 'OK' }]
+            });
+        });
+        
+        // Оплата
         document.getElementById('pay-button').addEventListener('click', () => {
-            const count = starsInput.value;
-            const price = totalPrice.textContent;
+            const count = document.getElementById('stars-count').value;
+            const price = document.getElementById('total-price').textContent;
             
             tg.showPopup({
-                title: 'Оплата TON',
-                message: `Переведите ${price} TON на кошелек:\n\n` +
-                         `<code>EQAB...dFgH</code>\n\n` +
-                         `После оплаты нажмите "Я оплатил"`,
-                buttons: [{
-                    type: 'default',
-                    text: 'Я оплатил',
-                    id: 'paid'
-                }, {
-                    type: 'cancel',
-                    id: 'cancel'
-                }]
+                title: `Оплата ${currentCurrency}`,
+                message: `Переведите ${price} ${currentCurrency} на:\n\n<code>EQAB...dFgH</code>\n\nПосле оплаты нажмите "Я оплатил"`,
+                buttons: [
+                    { type: 'default', text: 'Я оплатил', id: 'paid' },
+                    { type: 'cancel', id: 'cancel' }
+                ]
             }, (buttonId) => {
                 if (buttonId === 'paid') {
-                    tg.showAlert('Спасибо! Проверяем оплату...');
+                    tg.showAlert('Проверяем оплату...');
+                    // Здесь можно добавить проверку транзакции
                 }
             });
         });
+        
+        // Обновление цены при изменении количества
+        document.getElementById('stars-count').addEventListener('input', updatePrice);
     </script>
 </body>
 </html>
