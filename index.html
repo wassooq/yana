@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Купить звезду в Telegram 🌟</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .star-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #0088cc;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌟 Магазин звёзд Telegram</h1>
+    <p>Выберите звезду и оплатите TON/USDT</p>
+
+    <div class="star-card">
+        <h3>⭐ Маленькая звезда</h3>
+        <p>Цена: <strong>5 TON</strong> или <strong>5 USDT</strong></p>
+        <button onclick="buyStar('small', 'ton')">Купить за TON</button>
+        <button onclick="buyStar('small', 'usdt')">Купить за USDT</button>
+    </div>
+
+    <div class="star-card">
+        <h3>⭐⭐ Средняя звезда</h3>
+        <p>Цена: <strong>15 TON</strong> или <strong>15 USDT</strong></p>
+        <button onclick="buyStar('medium', 'ton')">Купить за TON</button>
+        <button onclick="buyStar('medium', 'usdt')">Купить за USDT</button>
+    </div>
+
+    <div class="star-card">
+        <h3>⭐⭐⭐ Большая звезда</h3>
+        <p>Цена: <strong>30 TON</strong> или <strong>30 USDT</strong></p>
+        <button onclick="buyStar('large', 'ton')">Купить за TON</button>
+        <button onclick="buyStar('large', 'usdt')">Купить за USDT</button>
+    </div>
+
+    <script>
+        // Инициализация Telegram Web App
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Раскрываем на весь экран
+
+        // Функция покупки звезды (имитация)
+        function buyStar(starType, currency) {
+            const prices = {
+                small: { ton: 5, usdt: 5 },
+                medium: { ton: 15, usdt: 15 },
+                large: { ton: 30, usdt: 30 }
+            };
+
+            const starName = {
+                small: "⭐ Маленькая звезда",
+                medium: "⭐⭐ Средняя звезда",
+                large: "⭐⭐⭐ Большая звезда"
+            };
+
+            const price = prices[starType][currency];
+            alert(`Вы покупаете ${starName[starType]} за ${price} ${currency.toUpperCase()}!`);
+
+            // В реальном приложении здесь будет вызов Telegram Payments
+            // tg.sendData(JSON.stringify({ star: starType, currency, price }));
+        }
+    </script>
+</body>
+</html>
