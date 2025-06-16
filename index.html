@@ -16,6 +16,7 @@
             --text: #ffffff;
             --text-light: #b0b0b0;
             --neon-shadow: 0 0 10px rgba(110, 69, 226, 0.7);
+            --promo-bg: rgba(110, 69, 226, 0.15);
         }
         
         body {
@@ -24,13 +25,24 @@
             margin: 0;
             padding: 0;
             color: var(--text);
-            min-height: 100vh;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
         .container {
-            max-width: 100%;
+            flex: 1;
             padding: 20px;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .scroll-content {
+            overflow-y: auto;
+            flex: 1;
+            padding-bottom: 10px;
         }
         
         .profile {
@@ -157,11 +169,13 @@
         
         .page {
             display: none;
+            flex-direction: column;
+            height: 100%;
             animation: fadeIn 0.3s ease-out;
         }
         
         .page.active {
-            display: block;
+            display: flex;
         }
         
         @keyframes fadeIn {
@@ -188,6 +202,9 @@
             padding: 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(110, 69, 226, 0.2);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .input-group {
@@ -237,6 +254,19 @@
         
         .payment-page {
             text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .payment-content {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .payment-address {
@@ -261,58 +291,93 @@
             margin-bottom: 15px;
             display: inline-block;
         }
+        
+        .promo-banner {
+            background: var(--promo-bg);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: center;
+            border: 1px solid var(--primary);
+            animation: pulse 2s infinite;
+        }
+        
+        .promo-text {
+            font-weight: 600;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Убираем скроллбар для WebApp */
+        ::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Главная страница -->
         <div class="page active" id="main-page">
-            <!-- Профиль пользователя -->
-            <div class="profile">
-                <img id="user-avatar" src="https://via.placeholder.com/80" class="avatar" alt="Avatar">
-                <h2 id="username" class="username">Username</h2>
-                <p id="user-id" class="user-id">ID: 123456789</p>
-            </div>
-            
-            <!-- Балансы -->
-            <div class="balance-grid">
-                <!-- TON -->
-                <div class="balance-card">
-                    <div class="balance-header">
-                        <h3 class="balance-title">Toncoin</h3>
-                        <span class="currency">TON</span>
+            <div class="scroll-content">
+                <!-- Профиль пользователя -->
+                <div class="profile">
+                    <img id="user-avatar" src="https://via.placeholder.com/80" class="avatar" alt="Avatar">
+                    <h2 id="username" class="username">Username</h2>
+                    <p id="user-id" class="user-id">ID: 123456789</p>
+                </div>
+                
+                <!-- Балансы -->
+                <div class="balance-grid">
+                    <!-- TON -->
+                    <div class="balance-card">
+                        <div class="balance-header">
+                            <h3 class="balance-title">Toncoin</h3>
+                            <span class="currency">TON</span>
+                        </div>
+                        <p class="balance-amount" id="ton-balance">0.00</p>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" id="ton-deposit">Депозит</button>
+                            <button class="btn btn-outline">Вывод</button>
+                        </div>
                     </div>
-                    <p class="balance-amount" id="ton-balance">0.00</p>
-                    <div class="action-buttons">
-                        <button class="btn btn-primary" id="ton-deposit">Депозит</button>
-                        <button class="btn btn-outline">Вывод</button>
+                    
+                    <!-- USDT -->
+                    <div class="balance-card">
+                        <div class="balance-header">
+                            <h3 class="balance-title">Tether</h3>
+                            <span class="currency">USDT</span>
+                        </div>
+                        <p class="balance-amount" id="usdt-balance">0.00</p>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" id="usdt-deposit">Депозит</button>
+                            <button class="btn btn-outline">Вывод</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Telegram Stars -->
+                    <div class="balance-card">
+                        <div class="balance-header">
+                            <h3 class="balance-title">Telegram Stars</h3>
+                            <span class="currency">🌟</span>
+                        </div>
+                        <p class="balance-amount" id="stars-balance">0</p>
+                        <div class="stars-actions">
+                            <button class="btn btn-primary" id="buy-ton">Купить за TON</button>
+                            <button class="btn btn-primary" id="buy-usdt">Купить за USDT</button>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- USDT -->
-                <div class="balance-card">
-                    <div class="balance-header">
-                        <h3 class="balance-title">Tether</h3>
-                        <span class="currency">USDT</span>
-                    </div>
-                    <p class="balance-amount" id="usdt-balance">0.00</p>
-                    <div class="action-buttons">
-                        <button class="btn btn-primary" id="usdt-deposit">Депозит</button>
-                        <button class="btn btn-outline">Вывод</button>
-                    </div>
-                </div>
-                
-                <!-- Telegram Stars -->
-                <div class="balance-card">
-                    <div class="balance-header">
-                        <h3 class="balance-title">Telegram Stars</h3>
-                        <span class="currency">🌟</span>
-                    </div>
-                    <p class="balance-amount" id="stars-balance">0</p>
-                    <div class="stars-actions">
-                        <button class="btn btn-primary" id="buy-ton">Купить за TON</button>
-                        <button class="btn btn-primary" id="buy-usdt">Купить за USDT</button>
-                    </div>
+                <!-- Промо-баннер -->
+                <div class="promo-banner">
+                    <p class="promo-text">🔥 Покупайте Telegram Stars на 40% дешевле! 🔥</p>
                 </div>
             </div>
         </div>
@@ -331,7 +396,7 @@
                 <div class="result">
                     Стоимость: <span class="price" id="total-price">0.35</span> <span id="payment-currency">TON</span>
                 </div>
-                <button class="btn btn-primary" id="pay-button">Оплатить</button>
+                <button class="btn btn-primary" id="pay-button" style="margin-top: auto;">Оплатить</button>
             </div>
         </div>
         
@@ -340,10 +405,11 @@
             <button class="back-button" id="back-from-ton-deposit">
                 ← Назад
             </button>
-            <div class="payment-page">
+            <div class="payment-content">
                 <div class="currency-icon">💎</div>
                 <h3>Депозит TON</h3>
                 <p>Отправьте TON на этот адрес:</p>
+                <!-- ВСТАВЬТЕ СВОЙ TON КОШЕЛЁК -->
                 <div class="payment-address" id="ton-address">EQAB...1234</div>
                 <p>Минимальная сумма: 0.1 TON</p>
             </div>
@@ -354,10 +420,11 @@
             <button class="back-button" id="back-from-usdt-deposit">
                 ← Назад
             </button>
-            <div class="payment-page">
+            <div class="payment-content">
                 <div class="currency-icon">💵</div>
                 <h3>Депозит USDT</h3>
                 <p>Отправьте USDT на этот адрес:</p>
+                <!-- ВСТАВЬТЕ СВОЙ USDT КОШЕЛЁК -->
                 <div class="payment-address" id="usdt-address">0xAbc...123</div>
                 <p>Только сеть TRC20</p>
                 <p>Минимальная сумма: 1 USDT</p>
@@ -369,12 +436,13 @@
             <button class="back-button" id="back-from-payment">
                 ← Назад
             </button>
-            <div class="payment-page">
+            <div class="payment-content">
                 <div class="currency-icon" id="payment-icon">💎</div>
                 <h3 id="payment-title">Оплата TON</h3>
                 <p>Отправьте:</p>
                 <div class="payment-amount" id="payment-amount">0.35 TON</div>
                 <p>на этот адрес:</p>
+                <!-- ВСТАВЬТЕ СВОЙ КОШЕЛЁК ДЛЯ ОПЛАТЫ -->
                 <div class="payment-address" id="payment-address">EQAB...dFgH</div>
                 <button class="btn btn-primary" id="confirm-payment" style="margin-top: 30px;">Я оплатил</button>
             </div>
@@ -461,6 +529,7 @@
             document.getElementById('payment-icon').textContent = currentCurrency === 'TON' ? '💎' : '💵';
             
             // Генерация случайного адреса для примера
+            // ЗАМЕНИТЕ НА СВОЙ КОШЕЛЁК
             const randomAddr = currentCurrency === 'TON' 
                 ? 'EQ' + Math.random().toString(36).substring(2, 12) + '...' + Math.random().toString(36).substring(2, 6)
                 : '0x' + Math.random().toString(36).substring(2, 12) + '...' + Math.random().toString(36).substring(2, 6);
@@ -488,6 +557,16 @@
         
         // Инициализация
         updatePrice();
+        
+        // Подгонка высоты под WebApp
+        function adjustHeight() {
+            document.documentElement.style.height = '100%';
+            document.body.style.height = '100%';
+            document.querySelector('.container').style.height = '100%';
+        }
+        
+        window.addEventListener('load', adjustHeight);
+        window.addEventListener('resize', adjustHeight);
     </script>
 </body>
 </html>
