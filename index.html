@@ -25,24 +25,12 @@
             margin: 0;
             padding: 0;
             color: var(--text);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
         
         .container {
-            flex: 1;
+            max-width: 100%;
             padding: 20px;
             box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        
-        .scroll-content {
-            overflow-y: auto;
-            flex: 1;
-            padding-bottom: 10px;
         }
         
         .profile {
@@ -169,13 +157,11 @@
         
         .page {
             display: none;
-            flex-direction: column;
-            height: 100%;
             animation: fadeIn 0.3s ease-out;
         }
         
         .page.active {
-            display: flex;
+            display: block;
         }
         
         @keyframes fadeIn {
@@ -202,9 +188,6 @@
             padding: 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(110, 69, 226, 0.2);
-            flex: 1;
-            display: flex;
-            flex-direction: column;
         }
         
         .input-group {
@@ -254,19 +237,6 @@
         
         .payment-page {
             text-align: center;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .payment-content {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 20px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
         
         .payment-address {
@@ -295,11 +265,11 @@
         .promo-banner {
             background: var(--promo-bg);
             border-radius: 12px;
-            padding: 15px;
-            margin-top: 15px;
+            padding: 12px;
+            margin: 10px 0;
             text-align: center;
             border: 1px solid var(--primary);
-            animation: pulse 2s infinite;
+            font-size: 14px;
         }
         
         .promo-text {
@@ -309,75 +279,125 @@
             -webkit-text-fill-color: transparent;
         }
         
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
+        .sticker {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            opacity: 0.8;
+            z-index: -1;
+            animation: float 6s ease-in-out infinite;
         }
         
-        /* Убираем скроллбар для WebApp */
-        ::-webkit-scrollbar {
-            display: none;
+        .sticker-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .sticker-2 {
+            top: 60%;
+            right: 10%;
+            animation-delay: 1s;
+        }
+        
+        .sticker-3 {
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        
+        .withdraw-container {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(110, 69, 226, 0.2);
+        }
+        
+        .max-button {
+            background: rgba(110, 69, 226, 0.2);
+            border: none;
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 8px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .available-amount {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
+    <!-- Анимационные стикеры -->
+    <img src="https://cdn.tlgrm.app/stickers/ccd/a8d/ccda8d5d-d492-4393-8bb7-e33f77c24907/192/1.webp" class="sticker sticker-1">
+    <img src="https://cdn.tlgrm.app/stickers/ccd/a8d/ccda8d5d-d492-4393-8bb7-e33f77c24907/192/2.webp" class="sticker sticker-2">
+    <img src="https://cdn.tlgrm.app/stickers/ccd/a8d/ccda8d5d-d492-4393-8bb7-e33f77c24907/192/3.webp" class="sticker sticker-3">
+    
     <div class="container">
         <!-- Главная страница -->
         <div class="page active" id="main-page">
-            <div class="scroll-content">
-                <!-- Профиль пользователя -->
-                <div class="profile">
-                    <img id="user-avatar" src="https://via.placeholder.com/80" class="avatar" alt="Avatar">
-                    <h2 id="username" class="username">Username</h2>
-                    <p id="user-id" class="user-id">ID: 123456789</p>
-                </div>
-                
-                <!-- Балансы -->
-                <div class="balance-grid">
-                    <!-- TON -->
-                    <div class="balance-card">
-                        <div class="balance-header">
-                            <h3 class="balance-title">Toncoin</h3>
-                            <span class="currency">TON</span>
-                        </div>
-                        <p class="balance-amount" id="ton-balance">0.00</p>
-                        <div class="action-buttons">
-                            <button class="btn btn-primary" id="ton-deposit">Депозит</button>
-                            <button class="btn btn-outline">Вывод</button>
-                        </div>
+            <!-- Профиль пользователя -->
+            <div class="profile">
+                <img id="user-avatar" src="https://via.placeholder.com/80" class="avatar" alt="Avatar">
+                <h2 id="username" class="username">Username</h2>
+                <p id="user-id" class="user-id">ID: 123456789</p>
+            </div>
+            
+            <!-- Промо-баннер -->
+            <div class="promo-banner">
+                <p class="promo-text">🌟 Telegram Stars со скидкой 40%!</p>
+            </div>
+            
+            <!-- Балансы -->
+            <div class="balance-grid">
+                <!-- TON -->
+                <div class="balance-card">
+                    <div class="balance-header">
+                        <h3 class="balance-title">Toncoin</h3>
+                        <span class="currency">TON</span>
                     </div>
-                    
-                    <!-- USDT -->
-                    <div class="balance-card">
-                        <div class="balance-header">
-                            <h3 class="balance-title">Tether</h3>
-                            <span class="currency">USDT</span>
-                        </div>
-                        <p class="balance-amount" id="usdt-balance">0.00</p>
-                        <div class="action-buttons">
-                            <button class="btn btn-primary" id="usdt-deposit">Депозит</button>
-                            <button class="btn btn-outline">Вывод</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Telegram Stars -->
-                    <div class="balance-card">
-                        <div class="balance-header">
-                            <h3 class="balance-title">Telegram Stars</h3>
-                            <span class="currency">🌟</span>
-                        </div>
-                        <p class="balance-amount" id="stars-balance">0</p>
-                        <div class="stars-actions">
-                            <button class="btn btn-primary" id="buy-ton">Купить за TON</button>
-                            <button class="btn btn-primary" id="buy-usdt">Купить за USDT</button>
-                        </div>
+                    <p class="balance-amount" id="ton-balance">0.00</p>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="ton-deposit">Депозит</button>
+                        <button class="btn btn-outline" id="ton-withdraw">Вывод</button>
                     </div>
                 </div>
                 
-                <!-- Промо-баннер -->
-                <div class="promo-banner">
-                    <p class="promo-text">🔥 Покупайте Telegram Stars на 40% дешевле! 🔥</p>
+                <!-- USDT -->
+                <div class="balance-card">
+                    <div class="balance-header">
+                        <h3 class="balance-title">Tether</h3>
+                        <span class="currency">USDT</span>
+                    </div>
+                    <p class="balance-amount" id="usdt-balance">0.00</p>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="usdt-deposit">Депозит</button>
+                        <button class="btn btn-outline" id="usdt-withdraw">Вывод</button>
+                    </div>
+                </div>
+                
+                <!-- Telegram Stars -->
+                <div class="balance-card">
+                    <div class="balance-header">
+                        <h3 class="balance-title">Telegram Stars</h3>
+                        <span class="currency">🌟</span>
+                    </div>
+                    <p class="balance-amount" id="stars-balance">0</p>
+                    <div class="stars-actions">
+                        <button class="btn btn-primary" id="buy-ton">Купить за TON</button>
+                        <button class="btn btn-primary" id="buy-usdt">Купить за USDT</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -396,7 +416,7 @@
                 <div class="result">
                     Стоимость: <span class="price" id="total-price">0.35</span> <span id="payment-currency">TON</span>
                 </div>
-                <button class="btn btn-primary" id="pay-button" style="margin-top: auto;">Оплатить</button>
+                <button class="btn btn-primary" id="pay-button">Оплатить</button>
             </div>
         </div>
         
@@ -405,7 +425,7 @@
             <button class="back-button" id="back-from-ton-deposit">
                 ← Назад
             </button>
-            <div class="payment-content">
+            <div class="payment-page">
                 <div class="currency-icon">💎</div>
                 <h3>Депозит TON</h3>
                 <p>Отправьте TON на этот адрес:</p>
@@ -420,7 +440,7 @@
             <button class="back-button" id="back-from-usdt-deposit">
                 ← Назад
             </button>
-            <div class="payment-content">
+            <div class="payment-page">
                 <div class="currency-icon">💵</div>
                 <h3>Депозит USDT</h3>
                 <p>Отправьте USDT на этот адрес:</p>
@@ -431,12 +451,58 @@
             </div>
         </div>
         
+        <!-- Страница вывода TON -->
+        <div class="page" id="ton-withdraw-page">
+            <button class="back-button" id="back-from-ton-withdraw">
+                ← Назад
+            </button>
+            <div class="withdraw-container">
+                <h3>Вывод TON</h3>
+                <div class="input-group">
+                    <label for="ton-withdraw-address">Ваш кошелёк TON:</label>
+                    <input type="text" id="ton-withdraw-address" placeholder="EQ...">
+                </div>
+                <div class="input-group">
+                    <label for="ton-withdraw-amount">Сумма:</label>
+                    <div style="display: flex; align-items: center;">
+                        <input type="number" id="ton-withdraw-amount" placeholder="0.00" step="0.01">
+                        <button class="max-button" id="ton-max-button">MAX</button>
+                    </div>
+                    <div class="available-amount">Доступно: <span id="ton-available">0.00</span> TON</div>
+                </div>
+                <button class="btn btn-primary" id="confirm-ton-withdraw">Подтвердить вывод</button>
+            </div>
+        </div>
+        
+        <!-- Страница вывода USDT -->
+        <div class="page" id="usdt-withdraw-page">
+            <button class="back-button" id="back-from-usdt-withdraw">
+                ← Назад
+            </button>
+            <div class="withdraw-container">
+                <h3>Вывод USDT</h3>
+                <div class="input-group">
+                    <label for="usdt-withdraw-address">Ваш кошелёк USDT:</label>
+                    <input type="text" id="usdt-withdraw-address" placeholder="0x...">
+                </div>
+                <div class="input-group">
+                    <label for="usdt-withdraw-amount">Сумма:</label>
+                    <div style="display: flex; align-items: center;">
+                        <input type="number" id="usdt-withdraw-amount" placeholder="0.00" step="0.01">
+                        <button class="max-button" id="usdt-max-button">MAX</button>
+                    </div>
+                    <div class="available-amount">Доступно: <span id="usdt-available">0.00</span> USDT</div>
+                </div>
+                <button class="btn btn-primary" id="confirm-usdt-withdraw">Подтвердить вывод</button>
+            </div>
+        </div>
+        
         <!-- Страница оплаты -->
         <div class="page" id="payment-page">
             <button class="back-button" id="back-from-payment">
                 ← Назад
             </button>
-            <div class="payment-content">
+            <div class="payment-page">
                 <div class="currency-icon" id="payment-icon">💎</div>
                 <h3 id="payment-title">Оплата TON</h3>
                 <p>Отправьте:</p>
@@ -444,7 +510,7 @@
                 <p>на этот адрес:</p>
                 <!-- ВСТАВЬТЕ СВОЙ КОШЕЛЁК ДЛЯ ОПЛАТЫ -->
                 <div class="payment-address" id="payment-address">EQAB...dFgH</div>
-                <button class="btn btn-primary" id="confirm-payment" style="margin-top: 30px;">Я оплатил</button>
+                <button class="btn btn-primary" id="confirm-payment">Я оплатил</button>
             </div>
         </div>
     </div>
@@ -461,6 +527,8 @@
             calculator: document.getElementById('calculator-page'),
             tonDeposit: document.getElementById('ton-deposit-page'),
             usdtDeposit: document.getElementById('usdt-deposit-page'),
+            tonWithdraw: document.getElementById('ton-withdraw-page'),
+            usdtWithdraw: document.getElementById('usdt-withdraw-page'),
             payment: document.getElementById('payment-page')
         };
         
@@ -482,9 +550,21 @@
         }
         
         // Балансы (изначально 0)
-        document.getElementById('ton-balance').textContent = '0.00';
-        document.getElementById('usdt-balance').textContent = '0.00';
-        document.getElementById('stars-balance').textContent = '0';
+        const balances = {
+            ton: 0,
+            usdt: 0,
+            stars: 0
+        };
+        
+        function updateBalances() {
+            document.getElementById('ton-balance').textContent = balances.ton.toFixed(2);
+            document.getElementById('usdt-balance').textContent = balances.usdt.toFixed(2);
+            document.getElementById('stars-balance').textContent = balances.stars;
+            document.getElementById('ton-available').textContent = balances.ton.toFixed(2);
+            document.getElementById('usdt-available').textContent = balances.usdt.toFixed(2);
+        }
+        
+        updateBalances();
         
         // Калькулятор стоимости
         let currentCurrency = 'TON';
@@ -520,6 +600,14 @@
             showPage(pages.usdtDeposit);
         });
         
+        document.getElementById('ton-withdraw').addEventListener('click', () => {
+            showPage(pages.tonWithdraw);
+        });
+        
+        document.getElementById('usdt-withdraw').addEventListener('click', () => {
+            showPage(pages.usdtWithdraw);
+        });
+        
         document.getElementById('pay-button').addEventListener('click', () => {
             const count = document.getElementById('stars-count').value;
             const price = document.getElementById('total-price').textContent;
@@ -546,10 +634,58 @@
             }, 2000);
         });
         
+        // Кнопки MAX для вывода
+        document.getElementById('ton-max-button').addEventListener('click', () => {
+            document.getElementById('ton-withdraw-amount').value = balances.ton.toFixed(2);
+        });
+        
+        document.getElementById('usdt-max-button').addEventListener('click', () => {
+            document.getElementById('usdt-withdraw-amount').value = balances.usdt.toFixed(2);
+        });
+        
+        // Подтверждение вывода
+        document.getElementById('confirm-ton-withdraw').addEventListener('click', () => {
+            const amount = parseFloat(document.getElementById('ton-withdraw-amount').value);
+            const address = document.getElementById('ton-withdraw-address').value;
+            
+            if (!address || address.length < 10) {
+                tg.showAlert('Введите корректный адрес кошелька');
+                return;
+            }
+            
+            if (isNaN(amount) || amount <= 0 || amount > balances.ton) {
+                tg.showAlert('Введите корректную сумму');
+                return;
+            }
+            
+            tg.showAlert(`Запрос на вывод ${amount} TON отправлен!`);
+            showPage(pages.main);
+        });
+        
+        document.getElementById('confirm-usdt-withdraw').addEventListener('click', () => {
+            const amount = parseFloat(document.getElementById('usdt-withdraw-amount').value);
+            const address = document.getElementById('usdt-withdraw-address').value;
+            
+            if (!address || address.length < 10) {
+                tg.showAlert('Введите корректный адрес кошелька');
+                return;
+            }
+            
+            if (isNaN(amount) || amount <= 0 || amount > balances.usdt) {
+                tg.showAlert('Введите корректную сумму');
+                return;
+            }
+            
+            tg.showAlert(`Запрос на вывод ${amount} USDT отправлен!`);
+            showPage(pages.main);
+        });
+        
         // Кнопки "Назад"
         document.getElementById('back-from-calc').addEventListener('click', () => showPage(pages.main));
         document.getElementById('back-from-ton-deposit').addEventListener('click', () => showPage(pages.main));
         document.getElementById('back-from-usdt-deposit').addEventListener('click', () => showPage(pages.main));
+        document.getElementById('back-from-ton-withdraw').addEventListener('click', () => showPage(pages.main));
+        document.getElementById('back-from-usdt-withdraw').addEventListener('click', () => showPage(pages.main));
         document.getElementById('back-from-payment').addEventListener('click', () => showPage(pages.calculator));
         
         // Обновление цены при изменении количества
@@ -557,16 +693,6 @@
         
         // Инициализация
         updatePrice();
-        
-        // Подгонка высоты под WebApp
-        function adjustHeight() {
-            document.documentElement.style.height = '100%';
-            document.body.style.height = '100%';
-            document.querySelector('.container').style.height = '100%';
-        }
-        
-        window.addEventListener('load', adjustHeight);
-        window.addEventListener('resize', adjustHeight);
     </script>
 </body>
 </html>
