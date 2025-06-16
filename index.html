@@ -154,6 +154,7 @@
         .balance-icon {
             width: 24px;
             height: 24px;
+            object-fit: contain;
         }
         
         .balance-amount {
@@ -320,6 +321,9 @@
         
         .payment-page {
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .payment-content {
@@ -329,6 +333,11 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(110, 69, 226, 0.3);
             backdrop-filter: blur(5px);
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .payment-address {
@@ -343,6 +352,9 @@
             font-size: 15px;
             position: relative;
             transition: all 0.3s;
+            width: 100%;
+            text-align: center;
+            padding-right: 80px;
         }
         
         .payment-address:hover {
@@ -353,15 +365,17 @@
         .copy-btn {
             position: absolute;
             right: 10px;
-            top: 10px;
+            top: 50%;
+            transform: translateY(-50%);
             background: rgba(110, 69, 226, 0.3);
             border: none;
             color: var(--primary);
             border-radius: 8px;
-            padding: 4px 8px;
+            padding: 6px 10px;
             font-size: 12px;
             cursor: pointer;
             transition: all 0.3s;
+            white-space: nowrap;
         }
         
         .copy-btn:hover {
@@ -416,6 +430,8 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(110, 69, 226, 0.3);
             backdrop-filter: blur(5px);
+            max-width: 500px;
+            margin: 0 auto;
         }
         
         .max-button {
@@ -447,6 +463,7 @@
             background: rgba(110, 69, 226, 0.3);
             margin: 20px 0;
             position: relative;
+            width: 100%;
         }
         
         .divider::after {
@@ -516,13 +533,14 @@
         
         /* Улучшенные стикеры */
         .sticker {
-            position: absolute;
-            width: 70px;
-            height: 70px;
-            opacity: 0.7;
+            position: fixed;
+            width: 80px;
+            height: 80px;
+            opacity: 0;
             z-index: 0;
             animation: float 8s ease-in-out infinite;
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            transition: opacity 1s ease;
         }
         
         .sticker-1 {
@@ -583,6 +601,20 @@
             0% { transform: translateY(0) rotate(0deg); opacity: 1; }
             100% { transform: translateY(-500px) rotate(360deg); opacity: 0; }
         }
+        
+        .payment-instruction {
+            background: rgba(110, 69, 226, 0.15);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary);
+            text-align: left;
+            font-size: 14px;
+        }
+        
+        .payment-instruction strong {
+            color: var(--secondary);
+        }
     </style>
 </head>
 <body>
@@ -616,7 +648,7 @@
                 <div class="balance-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
                     <div class="balance-header">
                         <h3 class="balance-title">
-                            <img src="https://cryptologos.cc/logos/toncoin-ton-logo.png" class="balance-icon"> Toncoin
+                            <img src="https://cryptologos.cc/logos/toncoin-ton-logo.png" class="balance-icon" alt="TON"> Toncoin
                         </h3>
                         <span class="currency">TON</span>
                     </div>
@@ -641,7 +673,7 @@
                 <div class="balance-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
                     <div class="balance-header">
                         <h3 class="balance-title">
-                            <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" class="balance-icon"> Tether
+                            <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" class="balance-icon" alt="USDT"> Tether
                         </h3>
                         <span class="currency">USDT</span>
                     </div>
@@ -723,17 +755,19 @@
                 </svg>
                 Назад
             </button>
-            <div class="payment-content animate-pop">
-                <div class="currency-icon">💎</div>
-                <h3>Депозит TON</h3>
-                <p>Отправьте TON на этот адрес:</p>
-                <div class="payment-address" id="ton-address">
-                    UQC_bwXDoSUSsSp-t2vg_iwgQdk08ul-B0rSbQCnTcQ0cvj0
-                    <button class="copy-btn" onclick="copyToClipboard('ton-address')">Копировать</button>
+            <div class="payment-page">
+                <div class="payment-content animate-pop">
+                    <div class="currency-icon">💎</div>
+                    <h3>Депозит TON</h3>
+                    <p>Отправьте TON на этот адрес:</p>
+                    <div class="payment-address" id="ton-address">
+                        UQC_bwXDoSUSsSp-t2vg_iwgQdk08ul-B0rSbQCnTcQ0cvj0
+                        <button class="copy-btn" onclick="copyToClipboard('ton-address')">Копировать</button>
+                    </div>
+                    <div class="payment-instruction">
+                        <strong>Важно:</strong> Отправьте <strong>точную сумму</strong>, указанную в приложении. Не отправляйте другие суммы!
+                    </div>
                 </div>
-                <div class="divider"></div>
-                <p>Минимальная сумма: <strong>0.1 TON</strong></p>
-                <p>Комиссия сети: <strong>0.05 TON</strong></p>
             </div>
         </div>
         
@@ -745,18 +779,20 @@
                 </svg>
                 Назад
             </button>
-            <div class="payment-content animate-pop">
-                <div class="currency-icon">💵</div>
-                <h3>Депозит USDT</h3>
-                <p>Отправьте USDT на этот адрес:</p>
-                <div class="payment-address" id="usdt-address">
-                    TKe1spdkqdh74Pah2rmgWmfbpYPY1VGPMz
-                    <button class="copy-btn" onclick="copyToClipboard('usdt-address')">Копировать</button>
+            <div class="payment-page">
+                <div class="payment-content animate-pop">
+                    <div class="currency-icon">💵</div>
+                    <h3>Депозит USDT</h3>
+                    <p>Отправьте USDT на этот адрес:</p>
+                    <div class="payment-address" id="usdt-address">
+                        TKe1spdkqdh74Pah2rmgWmfbpYPY1VGPMz
+                        <button class="copy-btn" onclick="copyToClipboard('usdt-address')">Копировать</button>
+                    </div>
+                    <div class="payment-instruction">
+                        <strong>Важно:</strong> Отправьте <strong>точную сумму</strong>, указанную в приложении. Не отправляйте другие суммы!<br>
+                        <strong>Сеть:</strong> TRC20
+                    </div>
                 </div>
-                <div class="divider"></div>
-                <p>Сеть: <strong>TRC20</strong></p>
-                <p>Минимальная сумма: <strong>1 USDT</strong></p>
-                <p>Комиссия сети: <strong>1 USDT</strong></p>
             </div>
         </div>
         
@@ -782,8 +818,6 @@
                     </div>
                     <div class="available-amount">Доступно: <span id="ton-available">0.00</span> TON</div>
                 </div>
-                <div class="divider"></div>
-                <p style="text-align: center; color: var(--text-light);">Комиссия вывода: <strong>0.05 TON</strong></p>
                 <button class="btn btn-primary" id="confirm-ton-withdraw">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -815,8 +849,6 @@
                     </div>
                     <div class="available-amount">Доступно: <span id="usdt-available">0.00</span> USDT</div>
                 </div>
-                <div class="divider"></div>
-                <p style="text-align: center; color: var(--text-light);">Комиссия вывода: <strong>1 USDT</strong></p>
                 <button class="btn btn-primary" id="confirm-usdt-withdraw">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -834,24 +866,28 @@
                 </svg>
                 Назад
             </button>
-            <div class="payment-content animate-pop">
-                <div class="currency-icon" id="payment-icon">💎</div>
-                <h3 id="payment-title">Оплата TON</h3>
-                <p>Отправьте:</p>
-                <div class="payment-amount" id="payment-amount">0.35 TON</div>
-                <p>на этот адрес:</p>
-                <div class="payment-address" id="payment-address">
-                    UQC_bwXDoSUSsSp-t2vg_iwgQdk08ul-B0rSbQCnTcQ0cvj0
-                    <button class="copy-btn" onclick="copyToClipboard('payment-address')">Копировать</button>
+            <div class="payment-page">
+                <div class="payment-content animate-pop">
+                    <div class="currency-icon" id="payment-icon">💎</div>
+                    <h3 id="payment-title">Оплата TON</h3>
+                    <p>Отправьте:</p>
+                    <div class="payment-amount" id="payment-amount">0.35 TON</div>
+                    <p>на этот адрес:</p>
+                    <div class="payment-address" id="payment-address">
+                        UQC_bwXDoSUSsSp-t2vg_iwgQdk08ul-B0rSbQCnTcQ0cvj0
+                        <button class="copy-btn" onclick="copyToClipboard('payment-address')">Копировать</button>
+                    </div>
+                    <div class="payment-instruction">
+                        <strong>Важно:</strong> Отправьте <strong>точную сумму</strong>, указанную выше. Не отправляйте другие суммы!<br>
+                        После оплаты нажмите кнопку "Я оплатил"
+                    </div>
+                    <button class="btn btn-success btn-pulse" id="confirm-payment" style="margin-top: 20px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Я оплатил
+                    </button>
                 </div>
-                <div class="divider"></div>
-                <p style="color: var(--text-light);">После оплаты нажмите кнопку ниже</p>
-                <button class="btn btn-success btn-pulse" id="confirm-payment">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    Я оплатил
-                </button>
             </div>
         </div>
     </div>
@@ -1212,6 +1248,18 @@
             stickers.forEach(sticker => {
                 sticker.style.opacity = '0.7';
             });
+            
+            // Проверяем загрузку иконок
+            const tonIcon = document.querySelector('.balance-icon[alt="TON"]');
+            const usdtIcon = document.querySelector('.balance-icon[alt="USDT"]');
+            
+            if (!tonIcon.complete || tonIcon.naturalWidth === 0) {
+                tonIcon.src = 'https://cryptologos.cc/logos/toncoin-ton-logo.png?v=025';
+            }
+            
+            if (!usdtIcon.complete || usdtIcon.naturalWidth === 0) {
+                usdtIcon.src = 'https://cryptologos.cc/logos/tether-usdt-logo.png?v=025';
+            }
         });
     </script>
 </body>
