@@ -32,16 +32,15 @@
             color: var(--text);
             min-height: 100vh;
             position: relative;
-            padding-bottom: 80px;
         }
         
         .container {
             max-width: 100%;
             padding: 20px;
             box-sizing: border-box;
+            padding-top: 50px;
         }
         
-        /* Анимированный фон */
         .bg-effects {
             position: fixed;
             top: 0;
@@ -213,23 +212,35 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
+        .back-button-container {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+        
         .back-button {
             display: flex;
             align-items: center;
             gap: 5px;
             color: var(--primary);
-            background: none;
+            background: rgba(110, 69, 226, 0.1);
             border: none;
             font-weight: 600;
-            margin-bottom: 15px;
             cursor: pointer;
-            padding: 5px 10px;
-            border-radius: 8px;
+            padding: 8px 12px;
+            border-radius: 12px;
             transition: all 0.3s;
+            font-size: 14px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
         .back-button:hover {
-            background: rgba(110, 69, 226, 0.1);
+            background: rgba(110, 69, 226, 0.2);
+        }
+        
+        .back-button:active {
+            transform: scale(0.95);
         }
         
         .calc-container, .payment-content, .withdraw-container {
@@ -351,7 +362,6 @@
             text-align: left;
         }
         
-        /* Анимация успешной оплаты */
         .confetti {
             position: fixed;
             width: 10px;
@@ -367,7 +377,6 @@
             100% { transform: translateY(-500px) rotate(360deg); opacity: 0; }
         }
         
-        /* Анимация пульсации */
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -378,7 +387,6 @@
             animation: pulse 2s infinite;
         }
         
-        /* Уведомление о скидке */
         .promo-banner {
             position: fixed;
             bottom: 0;
@@ -431,7 +439,6 @@
             margin-left: 10px;
         }
         
-        /* Тарифы */
         .rate-buttons {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -465,7 +472,6 @@
             color: var(--text-light);
         }
         
-        /* История транзакций */
         .transaction-list {
             margin-top: 20px;
         }
@@ -494,7 +500,6 @@
             color: var(--text-light);
         }
         
-        /* Информационные блоки */
         .info-card {
             background: rgba(110, 69, 226, 0.15);
             padding: 15px;
@@ -514,7 +519,6 @@
             font-size: 14px;
         }
         
-        /* Мобильная адаптация */
         @media (max-width: 480px) {
             .rate-buttons {
                 grid-template-columns: 1fr;
@@ -528,49 +532,11 @@
                 width: 100%;
             }
         }
-        /* Новые стили для кнопки "Назад" */
-        .back-button-container {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            z-index: 1000;
-        }
-        
-        .back-button {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: var(--primary);
-            background: rgba(110, 69, 226, 0.1);
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 12px;
-            transition: all 0.3s;
-            font-size: 14px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .back-button:hover {
-            background: rgba(110, 69, 226, 0.2);
-        }
-        
-        .back-button:active {
-            transform: scale(0.95);
-        }
-        
-        /* Добавляем отступ для контента, чтобы кнопка не перекрывала его */
-        .page-content {
-            padding-top: 50px;
-        }
     </style>
 </head>
 <body>
-    <!-- Анимированный фон -->
     <div class="bg-effects" id="bg-effects"></div>
     
-    <!-- Контейнер для кнопки "Назад" -->
     <div class="back-button-container" id="back-button-container" style="display: none;">
         <button class="back-button" id="back-button">
             ← Назад
@@ -578,20 +544,14 @@
     </div>
     
     <div class="container">
-        <!-- Главная страница -->
         <div class="page active" id="main-page">
-            <div class="page-content">
-                <!-- Профиль пользователя -->
-                <div class="profile animate__animated animate__fadeIn">
-                    <img id="user-avatar" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="avatar" alt="Avatar">
-                    <h2 id="username" class="username">Username</h2>
-                    <p id="user-id" class="user-id">ID: 123456789</p>
-                </div>
-    
+            <div class="profile animate__animated animate__fadeIn">
+                <img id="user-avatar" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="avatar" alt="Avatar">
+                <h2 id="username" class="username">Username</h2>
+                <p id="user-id" class="user-id">ID: 123456789</p>
+            </div>
             
-            <!-- Балансы -->
             <div class="balance-grid">
-                <!-- TON -->
                 <div class="balance-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
                     <div class="balance-header">
                         <h3 class="balance-title">Toncoin (TON)</h3>
@@ -604,7 +564,6 @@
                     </div>
                 </div>
                 
-                <!-- USDT -->
                 <div class="balance-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
                     <div class="balance-header">
                         <h3 class="balance-title">Tether (USDT)</h3>
@@ -617,7 +576,6 @@
                     </div>
                 </div>
                 
-                <!-- Telegram Stars -->
                 <div class="balance-card animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
                     <div class="balance-header">
                         <h3 class="balance-title">Telegram Stars</h3>
@@ -630,7 +588,6 @@
                     </div>
                 </div>
                 
-                <!-- История транзакций (пустая) -->
                 <div class="balance-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
                     <div class="balance-header">
                         <h3 class="balance-title">История операций</h3>
@@ -645,9 +602,7 @@
             </div>
         </div>
         
-        <!-- Калькулятор покупки -->
         <div class="page" id="calculator-page">
-            <button class="back-button" id="back-from-calc">← Назад</button>
             <div class="calc-container">
                 <h3>Покупка Telegram Stars</h3>
                 
@@ -691,9 +646,7 @@
             </div>
         </div>
         
-        <!-- Страница депозита TON -->
         <div class="page" id="ton-deposit-page">
-            <button class="back-button" id="back-from-ton-deposit">← Назад</button>
             <div class="payment-content">
                 <h3>Депозит TON</h3>
                 <p>Отправьте TON на этот адрес:</p>
@@ -720,9 +673,7 @@
             </div>
         </div>
         
-        <!-- Страница депозита USDT -->
         <div class="page" id="usdt-deposit-page">
-            <button class="back-button" id="back-from-usdt-deposit">← Назад</button>
             <div class="payment-content">
                 <h3>Депозит USDT</h3>
                 <p>Отправьте USDT на этот адрес:</p>
@@ -750,9 +701,7 @@
             </div>
         </div>
         
-        <!-- Страница оплаты -->
         <div class="page" id="payment-page">
-            <button class="back-button" id="back-from-payment">← Назад</button>
             <div class="payment-content">
                 <h3 id="payment-title">Оплата TON</h3>
                 <p>Отправьте:</p>
@@ -779,9 +728,7 @@
             </div>
         </div>
         
-        <!-- Страница вывода TON -->
         <div class="page" id="ton-withdraw-page">
-            <button class="back-button" id="back-from-ton-withdraw">← Назад</button>
             <div class="withdraw-container">
                 <h3>Вывод TON</h3>
                 
@@ -810,9 +757,7 @@
             </div>
         </div>
         
-        <!-- Страница вывода USDT -->
         <div class="page" id="usdt-withdraw-page">
-            <button class="back-button" id="back-from-usdt-withdraw">← Назад</button>
             <div class="withdraw-container">
                 <h3>Вывод USDT</h3>
                 
@@ -845,7 +790,6 @@
         </div>
     </div>
 
-    <!-- Промо-баннер -->
     <div class="promo-banner" id="promo-banner">
         <div class="promo-text">🔥 Спецпредложение! Покупайте Stars со скидкой 10% до конца недели!</div>
         <div>
@@ -855,11 +799,9 @@
     </div>
 
     <script>
-        // Инициализация Telegram Web App
         const tg = window.Telegram.WebApp;
         tg.expand();
         
-        // Создаем анимированный фон
         function createParticles() {
             const container = document.getElementById('bg-effects');
             const particleCount = 15;
@@ -868,7 +810,6 @@
                 const particle = document.createElement('div');
                 particle.classList.add('bg-particle');
                 
-                // Случайные параметры
                 const size = Math.random() * 20 + 10;
                 const posX = Math.random() * 100;
                 const posY = Math.random() * 100;
@@ -888,7 +829,6 @@
             }
         }
         
-        // Создание конфетти
         function createConfetti() {
             const colors = ['#6e45e2', '#00d2ff', '#ff6b6b', '#4caf50', '#ffeb3b'];
             
@@ -896,7 +836,6 @@
                 const confetti = document.createElement('div');
                 confetti.classList.add('confetti');
                 
-                // Случайные параметры
                 const size = Math.random() * 10 + 5;
                 const posX = Math.random() * 100;
                 const color = colors[Math.floor(Math.random() * colors.length)];
@@ -912,14 +851,12 @@
                 
                 document.body.appendChild(confetti);
                 
-                // Удаляем после анимации
                 setTimeout(() => {
                     confetti.remove();
                 }, 3000);
             }
         }
         
-        // Копирование в буфер обмена
         function copyToClipboard(elementId) {
             const element = document.getElementById(elementId);
             const text = element.textContent.trim();
@@ -938,7 +875,6 @@
             });
         }
         
-     // Страницы
         const pages = {
             main: document.getElementById('main-page'),
             calculator: document.getElementById('calculator-page'),
@@ -948,87 +884,48 @@
             usdtWithdraw: document.getElementById('usdt-withdraw-page'),
             payment: document.getElementById('payment-page')
         };
-        // Кнопка "Назад"
+        
         const backButton = document.getElementById('back-button');
         const backButtonContainer = document.getElementById('back-button-container');
         
-        // Текущая страница
         let currentPage = pages.main;
+        let currentCurrency = 'TON';
         
-        // Навигация между страницами
         function showPage(page) {
-            // Скрываем текущую страницу
             currentPage.classList.remove('active');
-            
-            // Обновляем текущую страницу
             currentPage = page;
-            
-            // Показываем новую страницу
             page.classList.add('active');
             
-            // Показываем/скрываем кнопку "Назад"
             if (page === pages.main) {
                 backButtonContainer.style.display = 'none';
             } else {
                 backButtonContainer.style.display = 'block';
             }
             
-            // Прокручиваем вверх
             window.scrollTo(0, 0);
         }
         
-        // Обработчик кнопки "Назад"
         backButton.addEventListener('click', function() {
-            if (currentPage === pages.calculator || currentPage === pages.payment) {
-                showPage(pages.main);
-            } else if (currentPage === pages.payment) {
+            if (currentPage === pages.payment) {
                 showPage(pages.calculator);
             } else {
                 showPage(pages.main);
             }
         });
         
-        // Обработчики для других кнопок (пример для одной кнопки)
-        document.getElementById('buy-ton').addEventListener('click', function() {
-            currentCurrency = 'TON';
-            showPage(pages.calculator);
-            updatePrice();
-        });
-        
-        // Данные пользователя
-        if (tg.initDataUnsafe.user) {
-            const user = tg.initDataUnsafe.user;
-            document.getElementById('username').textContent = user.first_name || 'Пользователь';
-            document.getElementById('user-id').textContent = `ID: ${user.id}`;
-            
-            if (user.photo_url) {
-                document.getElementById('user-avatar').src = user.photo_url;
-            }
-        }
-        
-        // Балансы (изначально 0)
-        document.getElementById('ton-balance').textContent = '0.00';
-        document.getElementById('usdt-balance').textContent = '0.00';
-        document.getElementById('stars-balance').textContent = '0';
-        
-        // Калькулятор стоимости
-        let currentCurrency = 'TON';
-        
         function updatePrice() {
             const count = parseInt(document.getElementById('stars-count').value) || 0;
             const pricePer100 = currentCurrency === 'TON' ? 0.35 : 1.06;
             let price = (count * pricePer100 / 100).toFixed(2);
             
-            // Бонус за большую сумму
             if (count >= 1000) {
-                price = (price * 0.95).toFixed(2); // 5% скидка
+                price = (price * 0.95).toFixed(2);
             }
             
             document.getElementById('total-price').textContent = price;
             document.getElementById('payment-currency').textContent = currentCurrency;
         }
         
-        // Выбор тарифа
         document.querySelectorAll('.rate-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.rate-btn').forEach(b => b.classList.remove('active'));
@@ -1038,7 +935,6 @@
             });
         });
         
-        // Обработчики кнопок
         document.getElementById('buy-ton').addEventListener('click', () => {
             currentCurrency = 'TON';
             showPage(pages.calculator);
@@ -1086,12 +982,10 @@
         });
         
         document.getElementById('confirm-payment').addEventListener('click', () => {
-            // Эффект конфетти
             createConfetti();
             
             tg.showAlert('Спасибо! Проверяем вашу оплату...');
             setTimeout(() => {
-                // Обновляем баланс (для демонстрации)
                 const starsCount = parseInt(document.getElementById('stars-count').value);
                 const currentStars = parseInt(document.getElementById('stars-balance').textContent);
                 document.getElementById('stars-balance').textContent = currentStars + starsCount;
@@ -1100,38 +994,6 @@
             }, 2000);
         });
         
-        // Кнопки "Назад" - исправленные обработчики
-        document.getElementById('back-from-calc').addEventListener('click', function(e) {
-            e.preventDefault();
-            showPage(pages.main);
-        });
-        
-        document.getElementById('back-from-ton-deposit').addEventListener('click', function(e) {
-            e.preventDefault();
-            showPage(pages.main);
-        });
-        
-        document.getElementById('back-from-usdt-deposit').addEventListener('click', function(e) {
-            e.preventDefault();
-            showPage(pages.main);
-        });
-        
-        document.getElementById('back-from-ton-withdraw').addEventListener('click', function(e) {
-            e.preventDefault();
-            showPage(pages.main);
-        });
-        
-        document.getElementById('back-from-usdt-withdraw').addEventListener('click', function(e) {
-            e.preventDefault();
-            showPage(pages.main);
-        });
-        
-        document.getElementById('back-from-payment').addEventListener('click', function(e) {
-            e.preventDefault();
-            showPage(pages.calculator);
-        });
-        
-        // Промо-баннер
         document.getElementById('use-promo').addEventListener('click', () => {
             showPage(pages.calculator);
             document.getElementById('stars-count').value = '1000';
@@ -1142,14 +1004,11 @@
             document.getElementById('promo-banner').style.display = 'none';
         });
         
-        // Обновление цены при изменении количества
         document.getElementById('stars-count').addEventListener('input', function() {
-            // Снимаем выделение с тарифов
             document.querySelectorAll('.rate-btn').forEach(b => b.classList.remove('active'));
             updatePrice();
         });
         
-        // Проверка статуса платежа
         document.getElementById('check-ton-deposit').addEventListener('click', () => {
             tg.showAlert('Проверяем ваш депозит... Пожалуйста, подождите.');
         });
@@ -1162,7 +1021,6 @@
             tg.showAlert('Проверяем ваш платеж... Пожалуйста, подождите.');
         });
         
-        // Подтверждение вывода
         document.getElementById('confirm-ton-withdraw').addEventListener('click', () => {
             const amount = parseFloat(document.getElementById('ton-withdraw-amount').value);
             const address = document.getElementById('ton-withdraw-address').value;
@@ -1193,9 +1051,23 @@
             }, 1500);
         });
         
-        // Инициализация
+        if (tg.initDataUnsafe.user) {
+            const user = tg.initDataUnsafe.user;
+            document.getElementById('username').textContent = user.first_name || 'Пользователь';
+            document.getElementById('user-id').textContent = `ID: ${user.id}`;
+            
+            if (user.photo_url) {
+                document.getElementById('user-avatar').src = user.photo_url;
+            }
+        }
+        
+        document.getElementById('ton-balance').textContent = '0.00';
+        document.getElementById('usdt-balance').textContent = '0.00';
+        document.getElementById('stars-balance').textContent = '0';
+        
         createParticles();
         updatePrice();
+        showPage(pages.main);
     </script>
 </body>
 </html>
