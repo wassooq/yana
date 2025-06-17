@@ -528,21 +528,66 @@
                 width: 100%;
             }
         }
+        /* Новые стили для кнопки "Назад" */
+        .back-button-container {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary);
+            background: rgba(110, 69, 226, 0.1);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 12px;
+            transition: all 0.3s;
+            font-size: 14px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-button:hover {
+            background: rgba(110, 69, 226, 0.2);
+        }
+        
+        .back-button:active {
+            transform: scale(0.95);
+        }
+        
+        /* Добавляем отступ для контента, чтобы кнопка не перекрывала его */
+        .page-content {
+            padding-top: 50px;
+        }
     </style>
 </head>
 <body>
     <!-- Анимированный фон -->
     <div class="bg-effects" id="bg-effects"></div>
     
+    <!-- Контейнер для кнопки "Назад" -->
+    <div class="back-button-container" id="back-button-container" style="display: none;">
+        <button class="back-button" id="back-button">
+            ← Назад
+        </button>
+    </div>
+    
     <div class="container">
         <!-- Главная страница -->
         <div class="page active" id="main-page">
-            <!-- Профиль пользователя -->
-            <div class="profile animate__animated animate__fadeIn">
-                <img id="user-avatar" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="avatar" alt="Avatar">
-                <h2 id="username" class="username">Username</h2>
-                <p id="user-id" class="user-id">ID: 123456789</p>
-            </div>
+            <div class="page-content">
+                <!-- Профиль пользователя -->
+                <div class="profile animate__animated animate__fadeIn">
+                    <img id="user-avatar" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="avatar" alt="Avatar">
+                    <h2 id="username" class="username">Username</h2>
+                    <p id="user-id" class="user-id">ID: 123456789</p>
+                </div>
+    
             
             <!-- Балансы -->
             <div class="balance-grid">
@@ -893,7 +938,7 @@
             });
         }
         
-        // Страницы
+     // Страницы
         const pages = {
             main: document.getElementById('main-page'),
             calculator: document.getElementById('calculator-page'),
@@ -903,20 +948,52 @@
             usdtWithdraw: document.getElementById('usdt-withdraw-page'),
             payment: document.getElementById('payment-page')
         };
+        // Кнопка "Назад"
+        const backButton = document.getElementById('back-button');
+        const backButtonContainer = document.getElementById('back-button-container');
+        
+        // Текущая страница
+        let currentPage = pages.main;
         
         // Навигация между страницами
         function showPage(page) {
-            // Скрываем все страницы
-            Object.values(pages).forEach(p => {
-                p.classList.remove('active');
-            });
+            // Скрываем текущую страницу
+            currentPage.classList.remove('active');
             
-            // Показываем нужную страницу
+            // Обновляем текущую страницу
+            currentPage = page;
+            
+            // Показываем новую страницу
             page.classList.add('active');
+            
+            // Показываем/скрываем кнопку "Назад"
+            if (page === pages.main) {
+                backButtonContainer.style.display = 'none';
+            } else {
+                backButtonContainer.style.display = 'block';
+            }
             
             // Прокручиваем вверх
             window.scrollTo(0, 0);
         }
+        
+        // Обработчик кнопки "Назад"
+        backButton.addEventListener('click', function() {
+            if (currentPage === pages.calculator || currentPage === pages.payment) {
+                showPage(pages.main);
+            } else if (currentPage === pages.payment) {
+                showPage(pages.calculator);
+            } else {
+                showPage(pages.main);
+            }
+        });
+        
+        // Обработчики для других кнопок (пример для одной кнопки)
+        document.getElementById('buy-ton').addEventListener('click', function() {
+            currentCurrency = 'TON';
+            showPage(pages.calculator);
+            updatePrice();
+        });
         
         // Данные пользователя
         if (tg.initDataUnsafe.user) {
