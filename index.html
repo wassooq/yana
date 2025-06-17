@@ -585,32 +585,14 @@
                     </div>
                 </div>
                 
-                <!-- История транзакций -->
+                <!-- История транзакций (пустая) -->
                 <div class="balance-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
                     <div class="balance-header">
-                        <h3 class="balance-title">Последние операции</h3>
+                        <h3 class="balance-title">История операций</h3>
                     </div>
-                    <div class="transaction-list">
-                        <div class="transaction-item">
-                            <div>
-                                <div>Покупка Stars</div>
-                                <div class="transaction-details">Сегодня, 14:30</div>
-                            </div>
-                            <div class="transaction-amount negative">-0.35 TON</div>
-                        </div>
-                        <div class="transaction-item">
-                            <div>
-                                <div>Депозит USDT</div>
-                                <div class="transaction-details">Вчера, 09:15</div>
-                            </div>
-                            <div class="transaction-amount positive">+10.00 USDT</div>
-                        </div>
-                        <div class="transaction-item">
-                            <div>
-                                <div>Вывод TON</div>
-                                <div class="transaction-details">2 дня назад</div>
-                            </div>
-                            <div class="transaction-amount negative">-5.00 TON</div>
+                    <div class="transaction-list" id="transaction-history">
+                        <div style="text-align: center; padding: 20px; color: var(--text-light);">
+                            Нет операций
                         </div>
                     </div>
                     <button class="btn btn-outline" style="margin-top: 15px;" id="view-all-transactions">Все операции</button>
@@ -924,10 +906,15 @@
         
         // Навигация между страницами
         function showPage(page) {
+            // Скрываем все страницы
             Object.values(pages).forEach(p => {
                 p.classList.remove('active');
             });
+            
+            // Показываем нужную страницу
             page.classList.add('active');
+            
+            // Прокручиваем вверх
             window.scrollTo(0, 0);
         }
         
@@ -1037,12 +1024,35 @@
         });
         
         // Кнопки "Назад" - исправленные обработчики
-        document.getElementById('back-from-calc').addEventListener('click', () => showPage(pages.main));
-        document.getElementById('back-from-ton-deposit').addEventListener('click', () => showPage(pages.main));
-        document.getElementById('back-from-usdt-deposit').addEventListener('click', () => showPage(pages.main));
-        document.getElementById('back-from-ton-withdraw').addEventListener('click', () => showPage(pages.main));
-        document.getElementById('back-from-usdt-withdraw').addEventListener('click', () => showPage(pages.main));
-        document.getElementById('back-from-payment').addEventListener('click', () => showPage(pages.calculator));
+        document.getElementById('back-from-calc').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage(pages.main);
+        });
+        
+        document.getElementById('back-from-ton-deposit').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage(pages.main);
+        });
+        
+        document.getElementById('back-from-usdt-deposit').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage(pages.main);
+        });
+        
+        document.getElementById('back-from-ton-withdraw').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage(pages.main);
+        });
+        
+        document.getElementById('back-from-usdt-withdraw').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage(pages.main);
+        });
+        
+        document.getElementById('back-from-payment').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage(pages.calculator);
+        });
         
         // Промо-баннер
         document.getElementById('use-promo').addEventListener('click', () => {
