@@ -431,24 +431,6 @@
             margin-left: 10px;
         }
         
-        /* QR код для депозита */
-        .qr-code {
-            width: 150px;
-            height: 150px;
-            margin: 15px auto;
-            background: white;
-            padding: 10px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .qr-code img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-        
         /* Тарифы */
         .rate-buttons {
             display: grid;
@@ -689,11 +671,6 @@
                 <h3>Депозит TON</h3>
                 <p>Отправьте TON на этот адрес:</p>
                 
-                <div class="qr-code">
-                    <!-- Здесь должен быть QR-код -->
-                    <span style="color: black; font-size: 12px;">QR-код для TON</span>
-                </div>
-                
                 <div class="payment-address" id="ton-address">
                     UQC_bwXDoSUSsSp-t2vg_iwgQdk08ul-B0rSbQCnTcQ0cvj0
                     <button class="copy-btn" onclick="copyToClipboard('ton-address')">Копировать</button>
@@ -722,11 +699,6 @@
             <div class="payment-content">
                 <h3>Депозит USDT</h3>
                 <p>Отправьте USDT на этот адрес:</p>
-                
-                <div class="qr-code">
-                    <!-- Здесь должен быть QR-код -->
-                    <span style="color: black; font-size: 12px;">QR-код для USDT</span>
-                </div>
                 
                 <div class="payment-address" id="usdt-address">
                     TKe1spdkqdh74Pah2rmgWmfbpYPY1VGPMz
@@ -759,11 +731,6 @@
                 <p>Отправьте:</p>
                 <div class="payment-amount" id="payment-amount">3.50 TON</div>
                 <p>на этот адрес:</p>
-                
-                <div class="qr-code">
-                    <!-- Здесь должен быть QR-код -->
-                    <span style="color: black; font-size: 12px;">QR-код для оплаты</span>
-                </div>
                 
                 <div class="payment-address" id="payment-address">
                     UQC_bwXDoSUSsSp-t2vg_iwgQdk08ul-B0rSbQCnTcQ0cvj0
@@ -957,7 +924,9 @@
         
         // Навигация между страницами
         function showPage(page) {
-            Object.values(pages).forEach(p => p.classList.remove('active'));
+            Object.values(pages).forEach(p => {
+                p.classList.remove('active');
+            });
             page.classList.add('active');
             window.scrollTo(0, 0);
         }
@@ -1067,7 +1036,7 @@
             }, 2000);
         });
         
-        // Кнопки "Назад"
+        // Кнопки "Назад" - исправленные обработчики
         document.getElementById('back-from-calc').addEventListener('click', () => showPage(pages.main));
         document.getElementById('back-from-ton-deposit').addEventListener('click', () => showPage(pages.main));
         document.getElementById('back-from-usdt-deposit').addEventListener('click', () => showPage(pages.main));
